@@ -1,15 +1,10 @@
-import Link from "next/link";
+import TampilanRegister from "../views/auth/register/register";
 
 const halamanRegister = () => {
+
     return (
         <div>
-            <h1>Halaman Register</h1>
-
-            <p>Sudah punya akun?</p>
-
-            <Link href="/auth/login">
-                Login
-            </Link>
+        <TampilanRegister />
         </div>
     );
 };

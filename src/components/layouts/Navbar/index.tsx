@@ -1,8 +1,12 @@
+import styes from './navbar.module.css';
+
 const Navbar = () => {
     return (
-        <nav className="navbar">
-            <div>navbar Component</div>
-        </nav>
+        <div className={styes.navbar}>
+            <div className="big">
+                <h1>Navbar</h1>
+            </div>
+        </div>
     );
 };
 

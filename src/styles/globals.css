@@ -1,4 +1,8 @@
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 * {
   box-sizing: border-box;
@@ -20,7 +24,11 @@ a {
 }
 
 
-  .navbar {
+.big{
+  font-size: 1.5rem;
+}
+
+  /* .navbar {
     width: 100%;
     height: 60px;
     background-color: #333;
@@ -28,7 +36,7 @@ a {
     display: flex;
     align-items: center;
     padding: 0 20px;
-  }
+  } */
 
 
 /* :root {
