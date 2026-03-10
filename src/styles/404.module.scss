@@ -1,0 +1,44 @@
+.error {
+    width: 100%;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: #f5f7fa; // ini untuk custom warna background
+    font-family: 'Seegoe UI', Tahoma, Geneva, Verdana, sans-serif; // ini untuk custom font
+
+    &__image {
+        width: 300px;
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #ff4d4f; // ini untuk custom warna judul
+    }
+
+    &__desc {
+        font-size: 18px;
+        color: #555;
+        margin-top: 20px;
+    }
+
+    &__button {
+        padding: 10px 20px;
+        background-color: #0070f3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.2s;
+    }
+
+    &__button:hover {
+        background-color: #0056c1;
+    }
+}

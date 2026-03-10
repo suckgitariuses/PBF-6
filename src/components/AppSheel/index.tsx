@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import Navbar from '@/components/layouts/Navbar';
 
 
-const disableNavbar = ["/auth/login", "/auth/register"];
+const disableNavbar = ["/auth/login", "/auth/register", "/404"];
 
 
 type AppshellProps = {
