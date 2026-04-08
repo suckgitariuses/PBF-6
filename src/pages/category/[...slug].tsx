@@ -6,7 +6,7 @@ const CategoryPage = () => {
 
     return (
         <div>
-            <h1>Halaman Category</h1>
+            <h1>Halaman Category</h1> // header untuk halaman kategori
 
             <h3>Parameter URL:</h3>
 
