@@ -1,80 +1,75 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 type ProductType = {
     id: string;
     name: string;
     price: number;
     size: string;
-    // warna: string;
+    category: string;
 };
 
-const kategori = () => {
-    // const [isLogin, setIsLogin] = useState(false);
-    // const { push } = useRouter();
-    const [products, setProducts] = useState([]);
+const ProdukPage = () => {
+    const [products, setProducts] = useState<ProductType[]>([]);
+    const [loading, setLoading] = useState(false);
 
-    // useEffect(() => {
-    //   if (!isLogin) {
-    //     push("/auth/login");
-    //   }
-    // }, []);
+  // fungsi ambil data (dipakai untuk load & refresh)
+    const getData = async () => {
+        try {
+        setLoading(true);
+        const res = await fetch("/api/produk");
+        const result = await res.json();
+        setProducts(result.data);
+        } catch (error) {
+        console.error("Error:", error);
+        } finally {
+        setLoading(false);
+        }
+    };
 
+    // load pertama kali
     useEffect(() => {
-        fetch("/api/produk")
-            .then((response) => response.json())
-            .then((responsedata) => {
-                // console.log("Data produk:", responsedata.data);
-                setProducts(responsedata.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching produk:", error);
-            });
-        }, []);
+        getData();
+    }, []);
 
     return (
-        <div>
-            <h1><b>Daftar Produk</b></h1>
-            {products.map((product: ProductType) => (
-                <div key={product.id}>
-                    <h2><b>{product.name}</b></h2>
-                    <p>Harga: {product.price}</p>
-                    <p>Ukuran: {product.size}</p>
-                    {/* <p>Warna: {product.warna}</p> */}
-                </div>
-            ))}
+        <div style={{ padding: "20px" }}>
+        <h1><b>Daftar Produk</b></h1>
+
+        {/* tombol refresh */}
+        <button
+            onClick={getData}
+            style={{
+            marginBottom: "20px",
+            padding: "10px 20px",
+            backgroundColor: "#0070f3",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+            }}
+        >
+            {loading ? "Loading..." : "Refresh Data"}
+        </button>
+
+        {/* tampilkan data */}
+        {products.map((product) => (
+            <div
+            key={product.id}
+            style={{
+                marginBottom: "20px",
+                padding: "10px",
+                border: "1px solid #ddd",
+                borderRadius: "6px",
+            }}
+            >
+            <h2><b>{product.name}</b></h2>
+            <p>Harga: {product.price}</p>
+            <p>Ukuran: {product.size}</p>
+            <p>Kategori: {product.category || "-"}</p>
+            </div>
+        ))}
         </div>
     );
 };
 
-export default kategori;
-
-// import TampilanProduk from "@/views/produk";
-
-// const HalamanProduk = () => {
-//     return <TampilanProduk />;
-// };
-
-// export default HalamanProduk;
-
-// // import { useRouter } from "next/router";
-// // import { useEffect, useState } from "react";
-
-// // const Produk = () => {
-// //     const [isLogin, setIsLogin] = useState(false);
-// //     const { push } = useRouter();
-
-// //     useEffect(() => {
-// //         if (!isLogin) {
-// //             push("/auth/login");
-// //         }
-// //     }, []);
-
-// //     return (
-// //         <div>
-// //             Produk User Page
-// //         </div>
-// //     );
-// // };
-
-// // export default Produk;
+export default ProdukPage;
