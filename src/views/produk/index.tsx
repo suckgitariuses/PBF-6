@@ -30,7 +30,7 @@ const TampilanProduk = ({ products }: { products: ProductType[] }) => {
                 </p>
 
                 <p className={styles.produk__content__item__price}>
-                Rp {product.price.toLocaleString()}
+                Rp {new Intl.NumberFormat('id-ID').format(product.price)}
                 </p>
 
             </div>
