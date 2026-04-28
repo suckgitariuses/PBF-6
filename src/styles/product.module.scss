@@ -1,13 +1,129 @@
-.button {
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: #0070f3;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+.container {
+    padding: 20px;
 }
 
-.button:hover {
-    background-color: #0056c1;
+.grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 10px;
+}
+
+.card img {
+    width: 200px;
+    border-radius: 8px;
+}
+
+/* Skeleton */
+.skeletonGrid {
+    display: flex;
+    gap: 20px;
+}
+
+.skeletonCard {
+    width: 220px;
+    height: 250px;
+    border-radius: 10px;
+    background: #ddd;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: .5; }
+    50% { opacity: 1; }
+    100% { opacity: .5; }
+}
+
+/* Produk styles */
+.produk {
+    padding: 20px;
+}
+
+.produk__title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.produk__content {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.produk__content__item {
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+}
+
+.produk__content__item__image img {
+    width: 200px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.produk__content__item__name {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.produk__content__item__category {
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.produk__content__item__price {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Skeleton */
+.produk__content__skeleton {
+    width: 250px;
+    height: 300px;
+    border-radius: 10px;
+    background: #ddd;
+    animation: blink 1.5s infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.produk__content__skeleton__image {
+    width: 200px;
+    height: 150px;
+    background: #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.produk__content__skeleton__name {
+    width: 180px;
+    height: 20px;
+    background: #ccc;
+    margin-bottom: 8px;
+}
+
+.produk__content__skeleton__category {
+    width: 120px;
+    height: 16px;
+    background: #ccc;
+    margin-bottom: 8px;
+}
+
+.produk__content__skeleton__price {
+    width: 100px;
+    height: 18px;
+    background: #ccc;
 }

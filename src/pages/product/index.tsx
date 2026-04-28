@@ -1,75 +1,30 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import TampilanProduk from "../views/product";
+import useSWR from "swr";
+import fetcher from "../utils/swr/fetcher";
 
-type ProductType = {
-    id: string;
-    name: string;
-    price: number;
-    size: string;
-    category: string;
-};
+// const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const ProdukPage = () => {
-    const [products, setProducts] = useState<ProductType[]>([]);
-    const [loading, setLoading] = useState(false);
+const kategori = () => {
 
-  // fungsi ambil data (dipakai untuk load & refresh)
-    const getData = async () => {
-        try {
-        setLoading(true);
-        const res = await fetch("/api/produk");
-        const result = await res.json();
-        setProducts(result.data);
-        } catch (error) {
-        console.error("Error:", error);
-        } finally {
-        setLoading(false);
-        }
-    };
+    // const [isLogin, setIsLogin] = useState(false);
+    const [products, setProducts] = useState([]);
+    // console.log("products:", products);
 
-    // load pertama kali
-    useEffect(() => {
-        getData();
-    }, []);
+    const { data, error, isLoading } = useSWR("/api/produk", fetcher);
+
+    //cek apakah data, error, dan isLoading sudah benar
+    // console.log("data:", data);
+    // console.log("error:", error);
+    // console.log("isLoading:", isLoading);
 
     return (
-        <div style={{ padding: "20px" }}>
-        <h1><b>Daftar Produk</b></h1>
-
-        {/* tombol refresh */}
-        <button
-            onClick={getData}
-            style={{
-            marginBottom: "20px",
-            padding: "10px 20px",
-            backgroundColor: "#0070f3",
-            color: "white",
-            border: "none",
-            borderRadius: "6px",
-            cursor: "pointer",
-            }}
-        >
-            {loading ? "Loading..." : "Refresh Data"}
-        </button>
-
-        {/* tampilkan data */}
-        {products.map((product) => (
-            <div
-            key={product.id}
-            style={{
-                marginBottom: "20px",
-                padding: "10px",
-                border: "1px solid #ddd",
-                borderRadius: "6px",
-            }}
-            >
-            <h2><b>{product.name}</b></h2>
-            <p>Harga: {product.price}</p>
-            <p>Ukuran: {product.size}</p>
-            <p>Kategori: {product.category || "-"}</p>
-            </div>
-        ))}
+        <div>
+        <TampilanProduk products={isLoading ? [] : data.data} />
         </div>
     );
+
 };
 
-export default ProdukPage;
+export default kategori;
