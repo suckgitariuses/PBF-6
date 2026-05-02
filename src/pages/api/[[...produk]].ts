@@ -49,6 +49,19 @@ export const getProducts = () => [
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const products = await retrieveProducts('products'); // Asumsi collection name 'products'
+        const { produk } = req.query;
+
+        if (produk && produk.length > 0) {
+            const productId = Array.isArray(produk) ? produk[0] : produk;
+            const product = products.find((item: any) => item.id?.toString() === productId.toString());
+
+            if (!product) {
+                return res.status(404).json({ error: 'Product not found' });
+            }
+
+            return res.status(200).json({ data: product });
+        }
+
         res.status(200).json({ data: products })
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch products' })
